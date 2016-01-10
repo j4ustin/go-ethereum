@@ -15,6 +15,13 @@ RUN add-apt-repository ppa:ethereum/ethereum-dev
 RUN apt-get update
 RUN apt-get install -q -y geth
 
+# Configure test-net cluster
+MKDIR  /etc/testnet/
+COPY . /go/src/github.com/j4ustin/go-ethereum
+WORKDIR /go/src/github.com/j4ustin/go-ethereum
+RUN cp ./go/src/github.com/j4ustin/go-ethereum /etc/testnet/CustomGenesis.json
+
+
 EXPOSE 8545
 EXPOSE 30303
 
